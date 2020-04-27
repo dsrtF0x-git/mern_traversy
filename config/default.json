@@ -1,3 +1,4 @@
 {
-  "mongoURI": "mongodb+srv://serhii:qwas1234@connector-akrjn.mongodb.net/test?retryWrites=true&w=majority"
+  "mongoURI": "mongodb+srv://serhii:qwas1234@connector-akrjn.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "dsrtf0x"
 }
