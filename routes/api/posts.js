@@ -1,9 +1,41 @@
 const express = require("express");
 const router = express.Router();
+const { check, validationResut } = require("express-validator");
+const auth = ("../../middleware/auth.js");
+const Post = require("../../models/Post.js");
+const Profile = require("../../models/Profile.js");
+const User = require("../../models/User.js");
 
 // @route api/posts
-router.get("/", (req, res) => {
-  res.send("posts route");
+router.post("/", [
+  auth, [
+    check("text", "Text is required.").not().isEmpty()
+  ]
+], async (req, res) => {
+
+  const errors = validationResut(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() })
+  }
+
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    
+    const newPost = new Post({
+      text: req.body.text,
+      name: user.name,
+      avatar: user.avatar,
+      user: req.user.id
+    });
+
+    const post = await newPost.save();
+
+    res.json(post);
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).send("Server error.")
+  }
 });
 
 module.exports = router;
