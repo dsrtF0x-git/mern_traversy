@@ -9,7 +9,7 @@ connectDB();
 // Middlewares
 app.use(express.json({extended: true}));
 
-const PORT = process.env.PORT || 4444;
+const PORT = process.env.PORT || 5000;
 
 app.get("/", (req, res) => {
   res.send("Its running");
