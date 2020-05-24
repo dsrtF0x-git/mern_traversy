@@ -29,13 +29,13 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <i className="fas fa-code"></i> DevConnector
+          DevConnector
         </Link>
       </h1>
-      { !loading && "" (<>{isAuthenticated ? authLinks : guestLinks}</>)}
+      { !loading && (<>{isAuthenticated ? authLinks : guestLinks}</>)}
     </nav>
   );
-};
+}
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
@@ -43,7 +43,7 @@ Navbar.propTypes = {
 }
 
 const mapStateToProps = state => ({
-
+  auth: state.auth
 });
 
-export default connect()(Navbar);
+export default connect(mapStateToProps, { logout })(Navbar);
