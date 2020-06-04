@@ -4,5 +4,6 @@
   "editor.formatOnSave": true,
   "prettier.singleQuote": true,
   "editor.columnSelection": true,
-  "editor.minimap.maxColumn": 80
+  "editor.minimap.maxColumn": 80,
+  "editor.tabSize": 2
 }

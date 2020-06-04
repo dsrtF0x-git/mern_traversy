@@ -1,22 +1,31 @@
 import React from 'react';
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import { logout } from "../../actions/auth";
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { logout } from '../../actions/auth';
 
 const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
-
   const authLinks = (
     <ul>
       <li>
-        <Link to="/dashboard">
-        <i className="fas fa-user"></i>{" "}
-          Dashboard</Link>
+        <Link to='/profiles'>
+          <i className='fas fa-user'></i> Developers
+          <li>
+            <Link to='/dashboard'>
+              <i className='fas fa-user'></i> Dashboard
+            </Link>
+          </li>
+        </Link>
       </li>
       <li>
-        <a onClick={logout} href="#!">
-          <i className="fas fa-sign-out-alt"></i>{" "}
-          <span className="hide-sm">Logout</span>
+        <Link to='/dashboard'>
+          <i className='fas fa-user'></i> Dashboard
+        </Link>
+      </li>
+      <li>
+        <a onClick={logout} href='#!'>
+          <i className='fas fa-sign-out-alt'></i>{' '}
+          <span className='hide-sm'>Logout</span>
         </a>
       </li>
     </ul>
@@ -24,31 +33,37 @@ const Navbar = ({ auth: { isAuthenticated, loading }, logout }) => {
 
   const guestLinks = (
     <ul>
-      <li><a href="profiles.html">Developers</a></li>
-      <li><Link to="/register">Register</Link></li>
-      <li><Link to="/login">Login</Link></li>
+      <li>
+        <Link to='/profiles'>
+          <i className='fas fa-user'></i> Developers
+        </Link>
+      </li>
+      <li>
+        <Link to='/register'>Register</Link>
+      </li>
+      <li>
+        <Link to='/login'>Login</Link>
+      </li>
     </ul>
   );
 
   return (
-    <nav className="navbar bg-dark">
+    <nav className='navbar bg-dark'>
       <h1>
-        <Link to="/">
-          DevConnector
-        </Link>
+        <Link to='/'>DevConnector</Link>
       </h1>
-      { !loading && (<>{isAuthenticated ? authLinks : guestLinks}</>)}
+      {!loading && <>{isAuthenticated ? authLinks : guestLinks}</>}
     </nav>
   );
-}
+};
 
 Navbar.propTypes = {
   logout: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
-}
+  auth: PropTypes.object.isRequired,
+};
 
-const mapStateToProps = state => ({
-  auth: state.auth
+const mapStateToProps = (state) => ({
+  auth: state.auth,
 });
 
 export default connect(mapStateToProps, { logout })(Navbar);
