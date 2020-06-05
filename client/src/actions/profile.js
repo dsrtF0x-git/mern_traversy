@@ -9,7 +9,6 @@ import {
   GET_PROFILES,
   GET_REPOS,
 } from './types';
-import { Redirect } from 'react-router-dom';
 
 // Get current users profile
 
@@ -241,7 +240,7 @@ export const deleteEducation = (id) => async (dispatch) => {
 export const deleteAccount = (id) => async (dispatch) => {
   if (window.confirm('Are you sure? This cannot be undone.')) {
     try {
-      const res = await axios.delete(`/api/profile`);
+      await axios.delete(`/api/profile`);
       dispatch({
         type: CLEAR_PROFILE,
       });

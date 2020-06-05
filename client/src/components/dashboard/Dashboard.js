@@ -11,7 +11,7 @@ import Education from './Education';
 const Dashboard = (props) => {
   useEffect(() => {
     props.getCurrentProfile();
-  }, []);
+  }, [getCurrentProfile]);
 
   return props.profile.loading && props.profile === null ? (
     <Spinner />
