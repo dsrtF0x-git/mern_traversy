@@ -10,6 +10,7 @@ export const LOGOUT = 'LOGOUT';
 export const GET_PROFILE = 'GET_PROFILE';
 export const GET_REPOS = 'GET_REPOS';
 export const GET_POST = 'GET_POST';
+export const GET_POSTS = 'GET_POSTS';
 export const POST_ERROR = 'POST_ERROR';
 export const GET_PROFILES = 'GET_PROFILES';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
